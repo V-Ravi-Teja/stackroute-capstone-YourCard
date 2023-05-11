@@ -18,6 +18,14 @@ public class Category {
     @Column(name = "CategoryID")
     private int categoryId;
 
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
     @Column(name = "CategoryName")
     private String categoryName;
 }

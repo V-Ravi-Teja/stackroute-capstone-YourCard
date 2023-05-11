@@ -21,6 +21,7 @@ public class Transaction {
     @Column(name = "TransactionID")
     private int transactionId;
 
+
     @ManyToOne
     @JoinColumn(name = "UserID")
     private User user;
@@ -37,5 +38,6 @@ public class Transaction {
     @ManyToOne
     @JoinColumn(name = "CategoryID")
     private Category category;
+
 
 }

@@ -1,8 +1,0 @@
-package com.ness.repository;
-
-import com.ness.entity.Category;
-import org.springframework.data.jpa.repository.JpaRepository;
-
-public interface CategoryRepository extends JpaRepository<Category, Integer> {
-}
-

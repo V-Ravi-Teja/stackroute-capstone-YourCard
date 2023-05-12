@@ -19,25 +19,4 @@ public class UserDTO {
         private String userPassword;
         private int userLimit;
 
-        public int getUserId() {
-                return userId;
-        }
-
-        public String getUserName() {
-                return userName;
-        }
-
-        public String getUserPassword() {
-                return userPassword;
-        }
-
-        public int getUserLimit() {
-                return userLimit;
-        }
-
-        public List<Transaction> getTransactions() {
-                return transactions;
-        }
-
-        private List<Transaction> transactions;
 }

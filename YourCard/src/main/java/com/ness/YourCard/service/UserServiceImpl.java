@@ -12,6 +12,7 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService{
     @Autowired
     private UserRepository userRepository;
+
     @Override
     public Integer addUser(UserDTO userDTO){
         User user = new User();
@@ -33,5 +34,11 @@ public class UserServiceImpl implements UserService{
         userDTO.setUserPassword(user.getUserPassword());
         userDTO.setUserLimit(user.getUserLimit());
         return userDTO;
+    }
+
+    @Override
+    public boolean checkIfUserPresent(int userId) {
+        Optional<User> optional = userRepository.findById(userId);
+        return optional.isPresent();
     }
 }

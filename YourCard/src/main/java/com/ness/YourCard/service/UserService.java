@@ -7,4 +7,6 @@ public interface UserService {
     public Integer addUser(UserDTO userDTO);
 
     UserDTO getUser(Integer userId);
+
+    boolean checkIfUserPresent(int userId);
 }

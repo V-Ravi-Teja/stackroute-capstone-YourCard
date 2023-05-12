@@ -20,8 +20,6 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "TransactionID")
     private int transactionId;
-
-
     @ManyToOne
     @JoinColumn(name = "UserID")
     private User user;

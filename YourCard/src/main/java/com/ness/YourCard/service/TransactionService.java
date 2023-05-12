@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface TransactionService {
     public Integer addTransaction(TransactionDTO transactionDto);
+    public List<TransactionDTO> getallTransaction();
 
-  public List<TransactionDTO> getallTransaction();
 }

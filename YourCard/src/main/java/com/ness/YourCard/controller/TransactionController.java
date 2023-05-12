@@ -28,9 +28,9 @@ public UserService userService;
         return "No such user present";
     }
 }
-@GetMapping(value = "/GetAllTransaction")
-    public List<TransactionDTO> getAllTransaction(){
-    List<TransactionDTO> transactionDTO=transactionService.getallTransaction();
+@GetMapping(value = "/GetAllTransaction/{userId}")
+    public List<TransactionDTO> getAllTransaction(@PathVariable Integer userId){
+    List<TransactionDTO> transactionDTO=transactionService.getallTransaction(userId);
     return transactionDTO;
 }
 

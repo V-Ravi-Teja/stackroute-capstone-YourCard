@@ -9,4 +9,8 @@ public interface UserService {
     UserDTO getUser(Integer userId);
 
     boolean checkIfUserPresent(int userId);
+
+    void updateUserDetails(Integer userId, UserDTO userDTO);
+
+    void deleteUser(Integer userid);
 }

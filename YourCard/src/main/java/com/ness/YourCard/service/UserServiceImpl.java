@@ -41,4 +41,23 @@ public class UserServiceImpl implements UserService{
         Optional<User> optional = userRepository.findById(userId);
         return optional.isPresent();
     }
+
+    @Override
+    public void updateUserDetails(Integer userId, UserDTO userDTO) {
+        Optional<User> optional = userRepository.findById(userId);
+        User user = optional.get();
+        user.setUserId(userId);
+        user.setUserName(userDTO.getUserName());
+        user.setUserPassword(userDTO.getUserPassword());
+        user.setUserLimit(userDTO.getUserLimit());
+        userRepository.save(user);
+    }
+
+    @Override
+    public void deleteUser(Integer userid) {
+        Optional<User> optional = userRepository.findById(userid);
+        User user = optional.get();
+        userRepository.delete(user);
+    }
+
 }

@@ -23,4 +23,16 @@ public class CategoryController {
         CategoryDTO categorydto = categoryService.getCategory(categoryId);
         return categorydto;
     }
+
+    @PutMapping(value = "/UpdateCategory/{categoryId}")
+    public String updateCategory(@PathVariable Integer categoryId, @RequestBody CategoryDTO categoryDTO) {
+        categoryService.updateCategory(categoryId, categoryDTO);
+        return "Category with id: " + categoryId + " updated successfully.";
+    }
+
+    @DeleteMapping(value = "/DeleteCategory/{categoryId}")
+    public String deleteCategory(@PathVariable Integer categoryId) {
+        categoryService.deleteCategory(categoryId);
+        return "Category with id " + categoryId + " deleted successfully.";
+    }
 }

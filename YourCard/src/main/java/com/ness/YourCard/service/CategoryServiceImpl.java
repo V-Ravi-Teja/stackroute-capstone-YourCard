@@ -1,6 +1,7 @@
 package com.ness.YourCard.service;
 
 import com.ness.YourCard.DTO.CategoryDTO;
+import com.ness.YourCard.Exception.NotFoundException;
 import com.ness.YourCard.entity.Category;
 import com.ness.YourCard.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,26 @@ public class CategoryServiceImpl implements CategoryService{
         categoryDTO.setCategoryId(category.getCategoryId());
         categoryDTO.setCategoryName(category.getCategoryName());
         return categoryDTO;
+
+    }
+
+    @Override
+    public void updateCategory(Integer categoryId, CategoryDTO categoryDTO) {
+
+        Optional<Category> optional = categoryRepository.findById(categoryId);
+        Category category = optional.get();
+        category.setCategoryId(categoryId);
+        category.setCategoryName(categoryDTO.getCategoryName());
+        categoryRepository.save(category);
+
+    }
+
+    @Override
+    public void deleteCategory(Integer categoryId) {
+
+        Optional<Category> optional = categoryRepository.findById(categoryId);
+        Category category = optional.get();
+        categoryRepository.delete(category);
 
     }
 }

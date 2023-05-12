@@ -1,5 +1,6 @@
 package com.ness.YourCard.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,6 +29,7 @@ public class User {
 
     @Column(name = "UserLimit")
     private int userLimit;
+    @JsonManagedReference
 
     @OneToMany(mappedBy = "user")
     private List<Transaction> transactions;

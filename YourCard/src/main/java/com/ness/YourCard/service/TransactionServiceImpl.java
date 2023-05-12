@@ -7,11 +7,14 @@ import com.ness.YourCard.entity.Category;
 import com.ness.YourCard.entity.Transaction;
 import com.ness.YourCard.entity.User;
 import com.ness.YourCard.repository.TransactionRepository;
+import com.ness.YourCard.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 @Service
 
 public class TransactionServiceImpl implements TransactionService{
@@ -19,35 +22,27 @@ public class TransactionServiceImpl implements TransactionService{
     public TransactionRepository transactionRepository;
     @Autowired
     public UserService userService;
-//    @Autowired
-//    public CategoryService categoryService;
+
+    @Autowired
+    private UserRepository userRepository;
     @Override
     public Integer addTransaction(TransactionDTO transactionDto){
         Transaction transaction=new Transaction();
         transaction.setTransactionId(transactionDto.getTransactionId());
-
+        transaction.setUser(transactionDto.getUser());
         transaction.setMerchant(transactionDto.getMerchant());
         transaction.setAmount(transactionDto.getAmount());
         transaction.setDate(transactionDto.getDate());
+        Optional<User> optional = userRepository.findById(transactionDto.getUser().getUserId());
+        User user = optional.get();
+        transaction.setUser(user);
         transactionRepository.save(transaction);
-        //transaction.setUser(transactionDto.getUser().getUserId());
-
-
-
-        //User user = userService.getUser(transactionDto.getUser().getUserId());
-        //transaction.setUser(user);
-
-
-
-
-
-
         return transaction.getTransactionId();
     }
 
     @Override
-    public List<TransactionDTO> getallTransaction(){
-        List<Transaction> transactions=transactionRepository.findAll();
+    public List<TransactionDTO> getallTransaction(Integer userid){
+        List<Transaction> transactions=transactionRepository.findAllByUserId(userid);
         List<TransactionDTO> transactionDTOs = new ArrayList<>();
         for (Transaction transaction : transactions) {
             TransactionDTO transactionDTO = new TransactionDTO();
@@ -61,6 +56,7 @@ public class TransactionServiceImpl implements TransactionService{
         }
         return transactionDTOs;
     }
+
 
 
 }

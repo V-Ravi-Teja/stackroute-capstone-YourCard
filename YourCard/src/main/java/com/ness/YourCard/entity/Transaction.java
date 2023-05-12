@@ -1,5 +1,6 @@
 package com.ness.YourCard.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,6 +21,9 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "TransactionID")
     private int transactionId;
+
+    @JsonBackReference
+
     @ManyToOne
     @JoinColumn(name = "UserID")
     private User user;

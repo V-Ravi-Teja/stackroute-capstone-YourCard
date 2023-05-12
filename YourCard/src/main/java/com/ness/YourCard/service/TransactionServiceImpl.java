@@ -41,8 +41,8 @@ public class TransactionServiceImpl implements TransactionService{
     }
 
     @Override
-    public List<TransactionDTO> getallTransaction(){
-        List<Transaction> transactions=transactionRepository.findAll();
+    public List<TransactionDTO> getallTransaction(Integer userid){
+        List<Transaction> transactions=transactionRepository.findAllByUserId(userid);
         List<TransactionDTO> transactionDTOs = new ArrayList<>();
         for (Transaction transaction : transactions) {
             TransactionDTO transactionDTO = new TransactionDTO();

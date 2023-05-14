@@ -77,10 +77,11 @@ public class TransactionServiceImpl implements TransactionService{
 //        Transaction transaction = optional.get();
         transactionRepository.deleteByTransactionId(TransactionId);
     }
-
-    @Override
     public boolean checkIfTransactionPresent(Integer TransactionId) {
-        Optional<Transaction> transaction=transactionRepository.findById(TransactionId);
+        Optional<Transaction> transaction = this.transactionRepository.findById(TransactionId);
         return transaction.isPresent();
     }
+
+
+
 }

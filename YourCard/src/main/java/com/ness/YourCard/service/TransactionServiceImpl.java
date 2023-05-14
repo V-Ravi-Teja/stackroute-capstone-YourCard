@@ -56,6 +56,27 @@ public class TransactionServiceImpl implements TransactionService{
         }
         return transactionDTOs;
     }
+    @Override
+    public void updateTransactionDetails(Integer TransactionId, TransactionDTO transactionDTO){
+
+        Optional<Transaction> optional = transactionRepository.findById(TransactionId);
+        Transaction transaction =optional.get();
+        //transaction.setUser(transactionDTO);
+        transaction.setMerchant(transactionDTO.getMerchant());
+        transaction.setAmount(transactionDTO.getAmount());
+        transaction.setDate(transactionDTO.getDate());
+        //transaction.setCategory(transactionDTO.getCategory());
+        transactionRepository.save(transaction);
+
+
+
+    }
+    @Override
+    public  void deleteTransaction(Integer TransactionId){
+//        Optional<Transaction> optional = transactionRepository.findById(TransactionId);
+//        Transaction transaction = optional.get();
+        transactionRepository.deleteByTransactionId(TransactionId);
+    }
 
 
 

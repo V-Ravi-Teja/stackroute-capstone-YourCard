@@ -38,28 +38,16 @@ public UserService userService;
     @Transactional
     @PutMapping(value= "/UpdateTransaction/{TransactionId}")
     public String updateCustomer(@PathVariable Integer TransactionId, @RequestBody TransactionDTO transactionDTO) {
-       if(transactionService.checkIfTransactionPresent(TransactionId)) {
-           transactionService.updateTransactionDetails(TransactionId, transactionDTO);
-           return "transaction with id: " + TransactionId + " updated succesfully";
-       }
-       else
-           return "no such transaction with id: "+TransactionId+" is present";
+        transactionService.updateTransactionDetails(TransactionId,transactionDTO);
+        return "transaction with id: " + TransactionId + " updated succesfully";
     }
 
 
     @Transactional
     @DeleteMapping(value = "/DeleteTransaction/{TransactionId}")
      public String delTransaction(@PathVariable Integer TransactionId){
-        if(transactionService.checkIfTransactionPresent(TransactionId)){
             transactionService.deleteTransaction(TransactionId);
             return " Transaction with id" + TransactionId + " deleted successfully";
-        }
-        else {
-            return "No such transaction present with id: "+ TransactionId;
-
-        }
-
-
         }
 
 

@@ -13,7 +13,5 @@ public interface TransactionService {
     public void updateTransactionDetails(Integer TransactionId, TransactionDTO transactionDTO);
 
     public void deleteTransaction(Integer TransactionId);
-    boolean checkIfTransactionPresent(Integer TransactionId);
-
 
 }

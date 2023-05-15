@@ -2,6 +2,7 @@ package com.ness.YourCard.service;
 
 import com.ness.YourCard.DTO.TransactionDTO;
 import com.ness.YourCard.DTO.UserDTO;
+import com.ness.YourCard.entity.Category;
 
 import java.util.List;
 
@@ -15,5 +16,5 @@ public interface TransactionService {
     public void deleteTransaction(Integer TransactionId);
     boolean checkIfTransactionPresent(Integer TransactionId);
 
-
+    List<TransactionDTO> getTxByCategory(List<TransactionDTO> T, Category C);
 }

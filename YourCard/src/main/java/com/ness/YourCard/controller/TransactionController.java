@@ -3,6 +3,7 @@ package com.ness.YourCard.controller;
 
 import com.ness.YourCard.DTO.TransactionDTO;
 import com.ness.YourCard.DTO.UserDTO;
+import com.ness.YourCard.entity.Category;
 import com.ness.YourCard.service.TransactionService;
 import com.ness.YourCard.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,10 +32,21 @@ public UserService userService;
         }
     }
     @GetMapping(value = "/GetAllTransaction/{userId}")
-        public List<TransactionDTO> getAllTransaction(@PathVariable Integer userId){
+    public List<TransactionDTO> getAllTransaction(@PathVariable Integer userId){
         List<TransactionDTO> transactionDTO=transactionService.getallTransaction(userId);
         return transactionDTO;
     }
+
+//get transactions by category
+    @GetMapping(value = "/TxByCategory/{userId}/{category}")
+    public List<TransactionDTO> getAllTransaction(@PathVariable Integer userId , @PathVariable Category category){
+        //fetching all transactions of user
+        List<TransactionDTO> transactionDTO = transactionService.getallTransaction(userId);
+        //filtering transactions by category
+        List<TransactionDTO> transactionByCategoryList = transactionService.getTxByCategory(transactionDTO,category);
+        return transactionByCategoryList;
+    }
+
     @Transactional
     @PutMapping(value= "/UpdateTransaction/{TransactionId}")
     public String updateCustomer(@PathVariable Integer TransactionId, @RequestBody TransactionDTO transactionDTO) {

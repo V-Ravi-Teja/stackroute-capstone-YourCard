@@ -19,9 +19,6 @@ public class TransactionDTO {
         private int transactionId;
 
         private User user;
-        public Category getCategory() {
-                return category;
-        }
         private String merchant;
         private BigDecimal amount;
         private LocalDate date;

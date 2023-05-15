@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 
@@ -82,6 +83,13 @@ public class TransactionServiceImpl implements TransactionService{
         return transaction.isPresent();
     }
 
+    @Override
+    public List<TransactionDTO> getTxByCategory(List<TransactionDTO> T, Category C) {
+        List<TransactionDTO> txByCategory = T.stream().
+                filter(s -> C.equals(s.getCategory())).
+                collect(Collectors.toList());
+        return txByCategory;
+    }
 
 
 }

@@ -17,4 +17,5 @@ public interface TransactionService {
     boolean checkIfTransactionPresent(Integer TransactionId);
 
     List<TransactionDTO> getTxByCategory(List<TransactionDTO> T, Category C);
+    public Integer  getCardBalanceLeft(int userId);
 }

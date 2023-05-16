@@ -11,6 +11,7 @@ import com.ness.YourCard.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -89,6 +90,19 @@ public class TransactionServiceImpl implements TransactionService{
                 filter(s -> C.equals(s.getCategory())).
                 collect(Collectors.toList());
         return txByCategory;
+    }
+    public Integer  getCardBalanceLeft(int userId) {
+
+       Optional<User> user1 = userRepository.findById(userId);
+       User user=user1.get();
+
+
+       Integer  totalTransactionAmount = transactionRepository.getTotalTransactionAmountByUser(user);
+
+
+       Integer  cardBalanceLeft = user.getUserLimit()-(totalTransactionAmount);
+
+       return cardBalanceLeft;
     }
 
 

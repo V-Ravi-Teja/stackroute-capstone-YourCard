@@ -71,5 +71,15 @@ public UserService userService;
 
         }
     }
+    @GetMapping("/cardbalanceleft/{userId}")
+    public String getCardBalanceLeft(@PathVariable int userId) {
+        if(userService.checkIfUserPresent(userId)) {
+            Integer cardBalanceLeft = transactionService.getCardBalanceLeft(userId);
+            return "left balance= " + cardBalanceLeft;
+        }
+        else{
+            return "no user with id: "+userId;
+        }
+    }
 
 }
